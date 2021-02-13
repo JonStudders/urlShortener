@@ -9,6 +9,9 @@
  *
  */
 
+include 'shorten.php';
 require 'config.php';
 require 'index.html';
+$result = $mysqli->query("SELECT * FROM shortenedurls WHERE shortenedURL = 'test'");
+shortenURL($mysqli,"https://www.youtube.com/");
 ?>
