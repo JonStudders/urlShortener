@@ -19,15 +19,23 @@ function shortenURL($mysqli, $longURL) {
         $result = $result->fetch_assoc();
         echo "<p>This URL already exists in our database</p>";
         echo "<p>The path is: " . $result["shortenedUrl"];
-        echo "<p>The shortened url is: **function**";
+        echo "<p>The shortened url is: **function return**";
     } else {
-        
+        $shortenedUrl = bin2hex(random_bytes(5));
+        $sql = "INSERT INTO shortenedurls (longUrl, shortenedUrl) VALUES ('$longURL','$shortenedUrl')";
+        if ($mysqli->query($sql) === TRUE) {
+            echo "Shortened URL added to database <br>";
+            echo "You're shortened URL is **function return**";
+        } else {
+            echo "Error: " . $sql . "<br>"  . $mysqli->error;
+        }
     }
 
 }
 
 function createShortUrl($path) {
-
+    //  http://localhost:63342/urlShortener/unshorten.php?path=value
+    //  http://localhost:63342/urlShortener/unshorten.php?path=5123d828
 }
 
 ?>
