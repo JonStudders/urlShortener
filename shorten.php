@@ -8,6 +8,14 @@
  * else add to database and display new url to user
  */
 
+require 'config.php';
+require 'index.html';
+
+if(isset($_GET['url']))
+{
+    shortenURL($mysqli, $_GET['url']);
+}
+
 function shortenURL($mysqli, $longURL) {
     if (mysqli_connect_errno()) {   //  Checking connection
         printf("Connect failed: %s\n", mysqli_connect_error());
@@ -23,7 +31,7 @@ function shortenURL($mysqli, $longURL) {
         $shortenedUrl = bin2hex(random_bytes(5));
         $sql = "INSERT INTO shortenedurls (longUrl, shortenedUrl) VALUES ('$longURL','$shortenedUrl')";
         if ($mysqli->query($sql) === TRUE) {
-            echo "Shortened URL added to database <br>";
+            echo $longURL . " added to database <br>";
             echo "You're shortened URL is: " . createShortUrl($shortenedUrl);
         } else {
             echo "Error: " . $sql . "<br>"  . $mysqli->error;
