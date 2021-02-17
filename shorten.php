@@ -9,7 +9,6 @@
  */
 
 function shortenURL($mysqli, $longURL) {
-    $decodedLongURL = urldecode($longURL);
     if (mysqli_connect_errno()) {   //  Checking connection
         printf("Connect failed: %s\n", mysqli_connect_error());
         exit();
