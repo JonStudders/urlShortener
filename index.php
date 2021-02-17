@@ -12,6 +12,5 @@
 include 'shorten.php';
 require 'config.php';
 require 'index.html';
-$result = $mysqli->query("SELECT * FROM shortenedurls WHERE shortenedURL = 'test'");
 shortenURL($mysqli,"https://github.com/JonStudders");
 ?>
